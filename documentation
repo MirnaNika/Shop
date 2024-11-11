@@ -1,0 +1,218 @@
+add_product.php
+ Purpose:
+This PHP script is designed to facilitate the addition of new products to an e-commerce platform. It ensures that the admin is authenticated, validates the input fields for the product name, description, price, and image, and inserts the product details into the database along with uploading the product image.
+
+ Usage:
+1. The admin must be logged in to access this script. If not logged in, the script redirects to the admin login page.
+
+2. The admin fills out the product details form including name, description, price, and selects an image for the product.
+
+3. Upon submitting the form, the script validates the input fields and processes the data.
+
+4. If all validation passes, the product details are inserted into the database and the product image is uploaded to the server.
+
+
+admin_login.php
+ Purpose:
+This PHP script serves as the login mechanism for admin users. It verifies the credentials provided by the admin against the database and grants access to the admin panel upon successful authentication.
+
+ Usage:
+1. If the admin is already logged in, the script redirects them to the admin panel.
+2. When the login form is submitted, the script retrieves the email and password entered by the admin.
+3. It checks the database to find an admin user with the provided email address.
+4. If a matching user is found, the script verifies the password.
+5. If both the email and password are correct, the admin is redirected to the admin panel.
+6. If the credentials are incorrect, an error message is displayed, and the admin is redirected back to the login page.
+
+admin_panel.php
+ Purpose:
+This PHP script serves as the admin panel for managing admin settings. It allows authenticated admins to update their first name, last name, and email address. The script retrieves the admin's information from the database and updates it if changes are submitted through the form.
+
+ Usage:
+1. The script starts the session to maintain admin authentication.
+2. It checks if the admin is logged in. If not, it redirects to the admin login page.
+3. Admin information, such as first name, last name, and email, is fetched from the database and displayed in the form fields.
+4. If the form is submitted with updated settings, the script updates the admin information in the database and updates the session with the new email address.
+5. Upon successful update, a success message is displayed; otherwise, an error message is shown.
+
+admin_products.php
+ Purpose:
+This PHP script functions as the admin panel for managing products. It allows authenticated admins to view, update, delete, or add new products. It retrieves product information from the database and provides options for editing or deleting each product.
+
+ Usage:
+1. The script checks if the admin is logged in. If not, it redirects to the admin login page.
+2. All products are fetched from the database and displayed in a tabular format.
+3. For each product, options are provided to edit or delete it.
+4. Admins can add new products by clicking the "Add Product" button, which redirects to the "add_product.php" page.
+
+
+admin_users.php
+ Purpose:
+This PHP script serves as the admin panel for managing users. It allows authenticated admins to view the list of users along with their details such as ID, first name, last name, email, and role (admin or user).
+
+ Usage:
+1. The script checks if the admin is logged in. If not, it redirects to the admin login page.
+2. All users are fetched from the database and displayed in a tabular format.
+3. For each user, their ID, first name, last name, email, and role are displayed in separate table columns.
+
+
+checkout.php
+  Purpose:
+This PHP script serves as a checkout page for purchasing a product. It allows users to select a payment method (credit card or PayPal) and provides forms for entering payment details. Upon successful payment, the script inserts the product into the user's cart in the database.
+
+ Usage:
+1. The script starts a session and includes the database connection.
+2. It checks if a product ID is provided via POST. If not, it redirects to the home page.
+3. The script handles payment processing based on the selected payment method (credit card or PayPal).
+4. Upon successful payment, it redirects to a success page.
+5. The script also contains JavaScript to toggle the display of credit card details based on the selected payment method.
+
+
+db_connection.php
+ Purpose:
+This PHP script establishes a connection to a MySQL database using the provided configuration parameters. It is typically included at the beginning of scripts that require database access.
+
+ Usage:
+1. Set the database configuration parameters such as the server name, username, password, and database name.
+2. Create a new MySQLi (MySQL Improved) object with the specified parameters to establish a connection to the database.
+3. Check if the connection is successful.
+
+delete_product.php
+ PHP Delete Product Script Documentation
+ Purpose:
+This PHP script is responsible for deleting a product from the database based on the provided product ID. It is typically invoked when a user initiates a delete action on a specific product.
+
+ Usage:
+1. Start the session to manage user authentication.
+2. Check if an admin is logged in by verifying the presence of the 'admin_id' session variable.
+3. Check if the product ID is provided in the URL parameters.
+4. Establish a connection to the database by including the 'db_connection.php' script.
+5. Retrieve the product ID from the URL.
+6. Prepare and execute a SQL statement to delete the product from the 'Products' table.
+7. Redirect the user to the product management page ('admin_products.php') after successful deletion.
+8. Handle errors if deletion fails.
+
+
+edit_product.php
+ Purpose:
+This PHP script facilitates the editing of product details in the database. It retrieves the product details based on the provided product ID, allows the admin to modify the details through a form, and updates the database with the edited information upon form submission.
+
+ Usage:
+1. Start the session to manage user authentication.
+2. Check if an admin is logged in by verifying the presence of the 'admin_id' session variable.
+3. Check if the product ID is provided in the URL parameters.
+4. Establish a connection to the database by including the 'db_connection.php' script.
+5. Retrieve the product ID from the URL.
+6. Fetch the product details from the database using the provided product ID.
+7. Display the product details in an HTML form, allowing the admin to edit them.
+8. Upon form submission, validate and retrieve the updated product details.
+9. Prepare and execute a SQL statement to update the product details in the database.
+10. Redirect the admin to the product management page ('admin_products.php') after successful update.
+11. Handle errors if updating the product details fails.
+
+
+index.php
+Purpose:
+This PHP script facilitates the editing of product details in the database. It retrieves the product details based on the provided product ID, allows the admin to modify the details through a form, and updates the database with the edited information upon form submission.
+
+Usage:
+1. Start the session to manage user authentication.
+2. Check if an admin is logged in by verifying the presence of the 'admin_id' session variable.
+3. Check if the product ID is provided in the URL parameters.
+4. Establish a connection to the database by including the 'db_connection.php' script.
+5. Retrieve the product ID from the URL.
+6. Fetch the product details from the database using the provided product ID.
+7. Display the product details in an HTML form, allowing the admin to edit them.
+8. Upon form submission, validate and retrieve the updated product details.
+9. Prepare and execute a SQL statement to update the product details in the database.
+10. Redirect the admin to the product management page ('admin_products.php') after successful update.
+11. Handle errors if updating the product details fails.
+
+
+login.php
+This PHP script handles user authentication for logging in. It verifies the provided email and password against the records stored in the database. Upon successful login, it starts a new session and stores user information in session variables. If login fails due to invalid credentials, appropriate error messages are displayed.
+
+Usage:
+1. Start the session to manage user authentication.
+2. Include the database connection script (`db_connection.php`).
+3. Define variables to store email, password, and error messages.
+4. Process form data when the login form is submitted.
+5. Validate the email and password inputs. Display error messages if they are empty.
+6. Prepare and execute a SQL statement to select user details based on the provided email.
+7. Verify the password against the hashed password retrieved from the database.
+8. If the credentials are valid, start a new session and store user information.
+9. Redirect the user to the home page (`index.php`) upon successful login.
+10. Display appropriate error messages if login fails due to invalid email or password.
+
+
+login_process.php
+This PHP script is responsible for handling user login authentication. It retrieves the user's email and password input from a login form, queries the database to fetch the hashed password associated with the provided email, and compares it with the hashed version of the input password.
+
+Steps:
+1. Include the database connection script (`db_connection.php`) to establish a connection with the database.
+2. Retrieve user input (email and password) from the login form submitted via POST method.
+3. Prepare an SQL statement to select the hashed password from the database based on the provided email.
+4. Bind the email parameter to the prepared statement and execute it.
+5. Store the result of the executed statement and check if the user exists in the database.
+6. If the user exists, bind the result variable to fetch the hashed password.
+7. Hash the input password using MD5 for comparison with the stored hashed password.
+8. Compare the hashed input password with the stored hashed password.
+9. If the passwords match, echo "Login successful!" and proceed with the desired login logic.
+10. If the passwords don't match or the user doesn't exist, echo "Incorrect email or password."
+11. Close the prepared statement and the database connection.
+
+
+logout.php
+This PHP script handles the logout functionality for an admin user. Upon execution, it performs the following steps:
+
+1. Initialize Session: Starts the session to access session variables.
+
+2. Unset Session Variables: Clears all session variables by setting `$_SESSION` to an empty array.
+
+3. Destroy Session: Destroys the session, removing all session data from the server.
+
+4. Redirect: Redirects the user to the login page for admins (`admin_login.php`) after logout.
+
+5. Exit: Exits the script to prevent any further execution.
+
+This script ensures that the admin user is logged out securely by destroying the session and redirecting them to the login page.
+
+
+
+payment_process.php
+This PHP script handles the process of adding a product to the cart and redirecting the user to the payment confirmation page. Here's how it works:
+
+1. Session Start: The script starts the session to access session variables.
+
+2. Form Submission Check: It checks if the form is submitted via POST method.
+
+3. Retrieve Product ID: If the form is submitted, it retrieves the product ID from the form data.
+
+4. Determine User ID: It determines the user ID by checking if the session variable 'user_id' is set. If not set, it uses a default user ID (e.g., 1).
+
+5. Set Quantity: The script sets the quantity of the product to be added to the cart. This value can be adjusted based on requirements. Here, the default quantity is set to 1.
+
+6. Database Connection: It includes the 'db_connection.php' script to establish a connection to the database.
+
+7. Insert into Cart Table: It prepares and executes an SQL statement to insert the product into the cart table, along with the user ID and quantity.
+
+8. Close Statement and Connection: After executing the SQL statement, it closes the statement and the database connection.
+
+9. Redirect: Upon successful addition to the cart, the script redirects the user to the payment confirmation page ('payment_confirmation.php').
+
+10. Form Not Submitted Redirect: If the form is not submitted, the script redirects the user to the index page ('index.php').
+
+The HTML part of the script displays payment options (PayPal and Credit Card) in buttons. Each button submits a form to the respective payment processing page.
+
+product.php
+This PHP script retrieves product details from the database based on the provided product ID and displays them on a webpage. Users can view product information such as name, description, and price, and they have the option to purchase the product.
+
+
+
+register.php
+This PHP script handles user registration. It validates user input, including first name, last name, email, password, and confirmation password. If the input is valid, it inserts the user's information into the database and sends a confirmation email. 
+
+
+
+
+
